@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="CinemaControle.jar" size="145200" download="eager" />
+    <jar href="CinemaControle.jar" size="145246" download="eager" />
+    <jar href="lib\junit-4.12.jar" size="316791" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.16.jar" size="2293144" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="CinemaControle" >

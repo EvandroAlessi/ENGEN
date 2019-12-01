@@ -1,0 +1,7 @@
+# Autores:	Evandro Alessi
+#		, Eric Ueta
+#		, CaCAIO SCHNEPPER			
+# Para execução:
+#		Executar primeiramente o script SQL presente em "\Database\Script.sql" para criação do schema antes da execução da aplicação.
+#			Obs: Configurações quanto ao Banco de Dados podem ser alteradas no código da Classe "Contexto", localizada na pasta "DAO"
+# 		Deve ser adicionar o Jar do Mysql presente em "mysql-connector-java-8.0.16\mysql-connector-java-8.0.16.jar"
