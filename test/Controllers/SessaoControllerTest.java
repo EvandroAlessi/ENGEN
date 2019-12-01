@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+
 import DAO.FilmeDAO;
 import DAO.SalaDAO;
 import DAO.SessaoDAO;
@@ -18,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 
 /**
@@ -27,6 +30,8 @@ import org.junit.Test;
 public class SessaoControllerTest {
     Sessao sessao, sessaoTeste;
     SessaoController sessaoController = new SessaoController();
+    FilmeController filmeController = new FilmeController();
+    SalaController salaController = new SalaController();
     FilmeDAO filmeDAO = new FilmeDAO();
     SalaDAO salaDAO = new SalaDAO();
     SessaoDAO sessaoDAO = new SessaoDAO();
@@ -71,13 +76,64 @@ public class SessaoControllerTest {
     
     @Test
     public void createTest(){
+        Filme filme = filmeController.get(1);
+        Sala sala = salaController.get(1);
         // ============= MONTAGEM CENÁRIO ============= //
-        this.filme = new Filme("Coringa","Todd Phillips","Drama","PT-BR",122);
-        this.sala = new Sala(55,50,50);
-        this.sessao = new Sessao(55,55,55,55,LocalDateTime.of(2019, Month.NOVEMBER, 11, 2, 23),10,filme,sala);
+        this.sessao = new Sessao(1,filme.getFilmeID(),sala.getSalaID(),1,LocalDateTime.of(2019, Month.NOVEMBER, 11, 2, 23),10,filme,sala);
         // ================ EXECUÇÃO ================= //       
         this.sessaoTeste = sessaoController.create(sessao);
         // ============== VERIFICAÇÃO =============== // 
         assertNotNull(sessaoTeste);
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createIngressosNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        Filme filme = filmeController.get(1);
+        Sala sala = salaController.get(1);
+        this.sessao = new Sessao(1,filme.getFilmeID(),sala.getSalaID(),0,LocalDateTime.of(2019, Month.NOVEMBER, 11, 2, 23),10,filme,sala);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.sessaoTeste = sessaoController.create(sessao);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createDataNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        Filme filme = filmeController.get(1);
+        Sala sala = salaController.get(1);
+        this.sessao = new Sessao(1,filme.getFilmeID(),sala.getSalaID(),1,null,10,filme,sala);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.sessaoTeste =sessaoController.create(sessao);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = ExceptionInInitializerError.class)
+    public void createValorIngressosNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        Filme filme = filmeController.get(1);
+        Sala sala = salaController.get(1);
+        this.sessao = new Sessao(1,filme.getFilmeID(),sala.getSalaID(),1,LocalDateTime.of(2019, Month.NOVEMBER, 11, 2, 23),-1,filme,sala);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.sessaoTeste = sessaoController.create(sessao);
+            assertTrue(false);
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
     }
 }

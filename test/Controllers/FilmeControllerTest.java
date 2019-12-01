@@ -32,10 +32,10 @@ public class FilmeControllerTest {
         this.filme = null;
     }
     
-    @Test
+    @Test 
     public void createTest(){
         // ============= MONTAGEM CENÁRIO ============= //
-        this.filme = new Filme("Coringa","Todd Phillips","Drama","PT-BR",122);
+       Filme filme = new Filme("Coringa2","Todd Phillips","Drama","PT-BR",122);
         
         // ================ EXECUÇÃO ================= //       
         this.filmeTeste = filmeController.create(filme);
@@ -44,15 +44,95 @@ public class FilmeControllerTest {
         assertNotNull(filmeTeste);
     }
     
-    @Test
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createDiretorNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        this.filme = new Filme("Coringa","","Drama","PT-BR",122);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.filmeTeste = filmeController.create(filme);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
     public void createTituloNullTest(){
         // ============= MONTAGEM CENÁRIO ============= //
-        this.filme = new Filme("aaa","","Drama","PT-BR",122);
+        Filme filme = new Filme(null,"Todd Phillips","Drama","PT-BR",122);
         
-        // ================ EXECUÇÃO ================= //       
-        this.filmeTeste = filmeController.create(filme);
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.filmeTeste = filmeController.create(filme);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createGeneroNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        Filme filme = new Filme("Coringa","Todd Phillips",null,"PT-BR",122);
         
-        // ============== VERIFICAÇÃO =============== // 
-        assertNull(filmeTeste);
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.filmeTeste = filmeController.create(filme);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createIdiomaTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        Filme filme = new Filme("Coringa","Todd Phillips","Drama",null,122);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.filmeTeste = filmeController.create(filme);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createDuracaoTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        this.filme = new Filme("Coringa","Todd Phillips","Drama","PT-BR",0);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.filmeTeste = filmeController.create(filme);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = ExceptionInInitializerError.class)
+    public void createAlreadyExistsTitle(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        this.filme = new Filme("Coringa","Todd Phillips","Drama","PT-BR",0);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.filmeTeste = filmeController.create(filme);
+            this.filmeTeste = filmeController.create(filme);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
     }
 }

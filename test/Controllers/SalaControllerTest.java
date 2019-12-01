@@ -1,12 +1,15 @@
 package Controllers;
 
 import DAO.SalaDAO;
+import Models.Filme;
 import Models.Sala;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.*;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  *
@@ -41,5 +44,51 @@ public class SalaControllerTest {
         
         // ============== VERIFICAÇÃO =============== // 
         assertNotNull(salaTeste);
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createNumeroNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        this.sala = new Sala(55,0,55);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.salaTeste =salaController.create(sala);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = NoClassDefFoundError.class)
+    public void createCapacidadeNullTest(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        this.sala = new Sala(55,55,0);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.salaTeste =salaController.create(sala);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
+    }
+    
+    @Test (expected = ExceptionInInitializerError.class)
+    public void createAlreadyExistsNumber(){
+        // ============= MONTAGEM CENÁRIO ============= //
+        this.sala = new Sala(55,55,0);
+        
+        // ================ EXECUÇÃO ================= //
+        try{
+            this.salaTeste =salaController.create(sala);
+            this.salaTeste =salaController.create(sala);
+            fail();
+        }
+        catch(Exception ex){
+            assertTrue(true);
+        }
     }
 }
