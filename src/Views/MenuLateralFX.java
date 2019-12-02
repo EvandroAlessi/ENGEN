@@ -6,6 +6,8 @@
 package Views;
 
 import CrossCutting.Enums.Tela;
+import CrossCutting.Log;
+import CrossCutting.Mensagem;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,7 +44,7 @@ public class MenuLateralFX extends GridPane {
     VBox vbTop;
     VBox vbBottom;
     VBox vbRight;
-    Button btnCartaz, btnSessao, btnFilme, btnSala, btnSair;
+    Button btnCartaz, btnSell, btnSellProduct, btnSessao, btnFilme, btnSala, btnCliente, btnProduto, btnSair;
     Image grafico;
     ImageView imageView;
     
@@ -53,15 +55,27 @@ public class MenuLateralFX extends GridPane {
         vbTop = new VBox();
         vbBottom = new VBox();
         btnCartaz = new Button("Em Cartaz");
+        btnSell = new Button("Vender Ingresso");
+        btnSellProduct = new Button("Vender Produtos");
         btnSessao = new Button("Sessões");
         btnFilme = new Button("Filmes");
         btnSala = new Button("Salas");
+        btnCliente= new Button("Clientes");
+        btnProduto = new Button("Produtos");
         btnSair = new Button("Sair");
         vbRight = new VBox();
         
         grafico = new Image(MenuLateralFX.class.getResourceAsStream("/Resources/icon-2.jpg"));
         imageView = new ImageView(grafico);
-
+        
+        btnSell.setOnAction((event) -> {
+            main.switchCenter(Tela.VENDA_INGRESSO);
+        });
+        
+        btnSellProduct.setOnAction((event) -> {
+            main.switchCenter(Tela.VENDA_PRODUTO);
+        });
+        
         btnCartaz.setOnAction((event) -> {
             main.switchCenter(Tela.CARTAZ);
         });
@@ -76,6 +90,14 @@ public class MenuLateralFX extends GridPane {
 
         btnSala.setOnAction((event) -> {
             main.switchCenter(Tela.SALA);
+        });
+        
+        btnCliente.setOnAction((event) -> {
+            main.switchCenter(Tela.CLIENTE);
+        });
+        
+        btnProduto.setOnAction((event) -> {
+            main.switchCenter(Tela.PRODUTO);
         });
         
         // Evento para confirmação de saída
@@ -101,10 +123,14 @@ public class MenuLateralFX extends GridPane {
         //Definindo tamanhos
         imageView.setFitHeight(120);
         imageView.setFitWidth(120);
+        btnSell.setMinWidth(150);
+        btnSell.setMinHeight(60);
+        btnSellProduct.setMinWidth(150);
+        btnSellProduct.setMinHeight(60);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         btnCartaz.setPadding(new Insets(25));
-        vbTop.getChildren().addAll(imageView, btnCartaz, btnSessao, btnFilme, btnSala);
+        vbTop.getChildren().addAll(imageView, btnSell, btnSellProduct, btnCartaz, btnSessao, btnFilme, btnSala, btnCliente, btnProduto);
         vbBottom.getChildren().addAll(btnSair);
         btnCartaz.setMinWidth(150);
         btnCartaz.setMinHeight(60);
@@ -114,10 +140,31 @@ public class MenuLateralFX extends GridPane {
         btnSessao.setMinHeight(60);
         btnSala.setMinWidth(150);
         btnSala.setMinHeight(60);
+        btnCliente.setMinWidth(150);
+        btnCliente.setMinHeight(60);
+        btnProduto.setMinWidth(150);
+        btnProduto.setMinHeight(60);
         btnSair.setMinWidth(150);
         btnSair.setMinHeight(60);
         
+       btnSell.setStyle("-fx-background-insets: 0,0; "
+                + "-fx-padding: 1; "
+                + "-fx-border: 0;"
+                + "-fx-font-weight: bold;"
+                + "-fx-background-color: green;"
+                + "-fx-color: white;"
+                + "-fx-alignment: center;" 
+                + "-fx-font-size: 17;");
        
+       btnSellProduct.setStyle("-fx-background-insets: 0,0; "
+                + "-fx-padding: 1; "
+                + "-fx-border: 0;"
+                + "-fx-margin-top: 15;"
+                + "-fx-font-weight: bold;"
+                + "-fx-background-color: chartreuse;"
+                + "-fx-color: white;"
+                + "-fx-alignment: center;" 
+                + "-fx-font-size: 17;");
         
         btnCartaz.setStyle("-fx-background-insets: 0,0; "
                 + "-fx-padding: 1; "
@@ -140,6 +187,16 @@ public class MenuLateralFX extends GridPane {
                 + "-fx-border: 0;"
                 + "-fx-font-weight: bold");
         
+        btnCliente.setStyle("-fx-background-insets: 0,0; "
+                + "-fx-padding: 1; "
+                + "-fx-border: 0;"
+                + "-fx-font-weight: bold");
+        
+        btnProduto.setStyle("-fx-background-insets: 0,0; "
+                + "-fx-padding: 1; "
+                + "-fx-border: 0;"
+                + "-fx-font-weight: bold");
+        
         btnSair.setStyle("-fx-background-insets: 0,0; "
                 + "-fx-padding: 1; "
                 + "-fx-border: 0;"
@@ -148,6 +205,11 @@ public class MenuLateralFX extends GridPane {
                 + "-fx-color: white;");
         
         btnSair.setTextFill(Color.WHITE);
+        btnSell.setTextFill(Color.WHITE);
+        btnSell.setTextAlignment(TextAlignment.CENTER);
+        
+        btnSellProduct.setTextFill(Color.WHITE);
+        btnSellProduct.setTextAlignment(TextAlignment.CENTER);
         
         add(vbTop, 0, 0);
         add(vbBottom, 0, 1);

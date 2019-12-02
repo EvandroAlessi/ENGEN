@@ -164,7 +164,7 @@ public class FilmeDAO {
     /**
      * Busca todos os filmes existentes no banco de dados
      *
-     * @param Diretor 
+     * @param diretor 
      * @return ArrayList<Filme> lista de todaos os filmes
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -193,7 +193,6 @@ public class FilmeDAO {
     /**
      * Busca todas as filmes existentes no banco de dados
      *
-     * @param Diretor 
      * @return ArrayList<Filme> lista de todas as filme
      * @throws ClassNotFoundException
      * @throws SQLException

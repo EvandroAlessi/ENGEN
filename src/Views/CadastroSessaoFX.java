@@ -94,31 +94,6 @@ public class CadastroSessaoFX {
 
         btnCadastrar.setOnAction(e -> {
             boolean ok = true;
-            //if (tfIngressos.getText().trim().length() > 0 && tfIngressos.getText() != null) {
-                //if (Double.parseDouble(tfValorIngresso.getText() > 0 && tfValorIngresso.getText() != null) {
-                    //if (cbSubCategoria.getSelectionModel().getSelectedItem() != null) {
-                        //ok = true;
-                    //} else {
-                        //Mensagem.aviso("A Despesa deve ter um Categoria.");
-                    //}
-                //} else {
-                   // tfValorIngresso.setStyle("-fx-text-box-border: red ;"
-                            //+ " -fx-focus-color: red ;");
-                    //Mensagem.informacao("A Despesa deve ter um valor!");
-                //}
-            //} else {
-//                tfIngressos.setStyle("-fx-text-box-border: red ;"
-//                        + " -fx-focus-color: red ;");
-//                Mensagem.informacao("A Despesa deve ter uma Descrição!");
-//                //if (cbSubCategoria.getSelectionModel().getSelectedItem() == null) {
-//                    //Mensagem.aviso("A Despesa deve ter um Categoria.");
-//                //}
-//                if (tfValorIngresso.getText().trim().length() == 0 || tfValorIngresso.getText() == null) {
-//                    tfValorIngresso.setStyle("-fx-text-box-border: red ;"
-//                            + " -fx-focus-color: red ;");
-//                    Mensagem.informacao("A Despesa deve ter um valor!");
-//                }
-//            }
             if (ok) {
                 ok = false;
                 if (sessaoCriada == null) {
@@ -189,9 +164,6 @@ public class CadastroSessaoFX {
     private GridPane criarFormulario(Sessao sessaoCriada) {
         GridPane pane = new GridPane();
         HBox l1 = new HBox();
-//        List<Filme> filmes = new ArrayList<>();
-//        List<Sala> salas = new ArrayList<>();
-
 
         ListIterator<Filme> subIte = filmes.listIterator();
         pane.setAlignment(Pos.TOP_CENTER);
@@ -210,11 +182,9 @@ public class CadastroSessaoFX {
 
 
         ColumnConstraints c1 = new ColumnConstraints();
-        //c1.setHgrow(Priority.ALWAYS);
         c1.setHalignment(HPos.CENTER);
 
         RowConstraints r1 = new RowConstraints();
-        //r1.setVgrow(Priority.ALWAYS);
         r1.setValignment(VPos.CENTER);
 
         pane.getColumnConstraints().add(c1);
@@ -296,8 +266,6 @@ public class CadastroSessaoFX {
                     this.cbSala.getSelectionModel().select(sala);
                 }
             }
-
-            //this.calendario.setValue(LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(despesaCriada.getDataOcorrencia()) ));
         }
 
         return pane;

@@ -298,7 +298,7 @@ public class SessaoDAO {
                 .append("',");
         columnsAndValues.append(" ValorIngresso= ")
                 .append(sessao.getValorIngresso());
- System.out.println(columnsAndValues.toString());
+        
         String query = " update Sessoes SET "
                 + columnsAndValues.toString()
                 + " WHERE SessaoID = " + sessao.getSessaoID();
@@ -309,7 +309,31 @@ public class SessaoDAO {
 
         return result > 0;
     }
+    
+    /**
+     *
+     * @param sessao
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    public boolean updateIngressos(Sessao sessao) throws ClassNotFoundException, SQLException {
+        StringBuilder columnsAndValues = new StringBuilder(255);
+        
+        columnsAndValues.append(" Ingressos= ")
+                .append(sessao.getIngressos())
+                .append("");
+        
+        String query = " update Sessoes SET "
+                + columnsAndValues.toString()
+                + " WHERE SessaoID = " + sessao.getSessaoID();
+        
+        int result = contexto.executeUpdate(query);
 
+        return result > 0;
+    }
+
+    
     /**
      *
      * @param id

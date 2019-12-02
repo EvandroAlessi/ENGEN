@@ -138,6 +138,32 @@ public class SessaoController {
 
         return null;
     }
+    
+     /**
+     *
+     * @param sessao
+     * @return
+     */
+    public Sessao updateIngressos(Sessao sessao) {
+        try {
+            SessaoDAO dao = new SessaoDAO();
+            
+            if (sessao.getIngressos() >= 0) {
+                if (dao.updateIngressos(sessao)) {
+                    return sessao;
+                } else {
+                    Mensagem.aviso("Não foi possivel abrir a sessão.");
+                }
+            }else{
+                Mensagem.aviso("Todos ingressos já vendidos, ecolha outra sessão.");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            Log.saveLog(e);
+            Mensagem.excecao(e);
+        }
+
+        return null;
+    }
 
     /**
      *

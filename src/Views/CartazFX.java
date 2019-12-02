@@ -57,7 +57,7 @@ public class CartazFX extends GridPane {
     Button btnCadastrar, btnEditar;
     private TableView<Filme> table;
     private TableColumn tcTitulo, tcDiretor, tcDuracao, tcGenero, tcIdioma;
-    private TableColumn<Filme, Void> tcApagar;
+//    private TableColumn<Filme, Void> tcApagar;
     private Stage mainStage;
 
     /** @param stage Recebe o stage principal de mainFX
@@ -72,18 +72,10 @@ public class CartazFX extends GridPane {
         tcDuracao = new TableColumn("Duracao");
         tcGenero = new TableColumn("Genero");
         tcIdioma = new TableColumn("Idioma");
-        tcApagar = new TableColumn("Ações");
+//        tcApagar = new TableColumn("Ações");
         btnCadastrar = new Button("Cadastrar");
         btnEditar = new Button("Editar");
 
-//        tcDescricao.prefWidthProperty().bind(table.widthProperty()
-//                .multiply(0.638));
-//        tcTipoCategoria.prefWidthProperty().bind(table.widthProperty()
-//                .multiply(0.15));
-//        tcTipo.prefWidthProperty().bind(table.widthProperty()
-//                .multiply(0.15));
-//        tcApagar.prefWidthProperty().bind(table.widthProperty()
-//                .multiply(0.06));
         tcDiretor.setCellValueFactory(new PropertyValueFactory<>("Diretor"));
         tcTitulo.setCellValueFactory(new PropertyValueFactory<>("Titulo"));
         tcDuracao.setCellValueFactory(new PropertyValueFactory<>("Duracao"));
@@ -198,7 +190,7 @@ public class CartazFX extends GridPane {
             }
         });
 
-        tcApagar.setCellFactory(cellFactory);
+//        tcApagar.setCellFactory(cellFactory);
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(5));
         hBox.setSpacing(10);
@@ -206,7 +198,7 @@ public class CartazFX extends GridPane {
         btnEditar.setMinSize(80, 40);
         hBox.getChildren().addAll();
 
-        table.getColumns().addAll(tcTitulo, tcDiretor, tcDuracao, tcGenero, tcIdioma, tcApagar);
+        table.getColumns().addAll(tcTitulo, tcDiretor, tcDuracao, tcGenero, tcIdioma/*, tcApagar*/);
         table.setTableMenuButtonVisible(true);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -263,7 +255,5 @@ public class CartazFX extends GridPane {
                 Mensagem.excecao(ex);
             }
         });
-
-        //tcNumero.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 }

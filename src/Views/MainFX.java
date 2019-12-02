@@ -6,6 +6,8 @@
 package Views;
 
 import CrossCutting.Enums.Tela;
+import CrossCutting.Log;
+import CrossCutting.Mensagem;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -95,6 +97,30 @@ public class MainFX extends Application {
                 break;
             case CARTAZ:
                 root.setCenter(new CartazFX(this.stage));
+                break;
+            case CLIENTE:
+                root.setCenter(new ClienteFX(this.stage));
+                break;
+            case PRODUTO:
+                root.setCenter(new ProdutoFX(this.stage));
+                break;
+            case VENDA_INGRESSO:
+                VendaIngressoFX form = new VendaIngressoFX();
+                try {
+                    form.start(this.stage);
+                } catch (Exception ex) {
+                    Log.saveLog(ex);
+                    Mensagem.excecao(ex);
+                }
+                break;
+            case VENDA_PRODUTO:
+                VendaProdutoFX form2 = new VendaProdutoFX();
+                try {
+                    form2.start(this.stage);
+                } catch (Exception ex) {
+                    Log.saveLog(ex);
+                    Mensagem.excecao(ex);
+                }
                 break;
         }
     }

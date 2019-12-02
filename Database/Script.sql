@@ -2,6 +2,25 @@ Create database Cinema;
 
 use Cinema;
 
+CREATE TABLE IF NOT EXISTS Clientes(
+	ClienteID INT NOT NULL auto_increment,
+    CPF VARCHAR(18) NOT NULL,
+	Nome VARCHAR(126) NOT NULL,
+	DataNascimento Date NOT NULL,
+	Pontuacao INT NOT NULL,
+  
+	PRIMARY KEY (ClienteID)
+);
+
+CREATE TABLE IF NOT EXISTS Produtos(
+	ProdutoID INT NOT NULL auto_increment,
+    Descricao VARCHAR(18) NOT NULL,
+	Preco FLOAT NOT NULL,
+	PrecoPontuacao INT NULL,
+  
+	PRIMARY KEY (ProdutoID)
+);
+
 CREATE TABLE IF NOT EXISTS Filmes (
 	FilmeID INT NOT NULL auto_increment,
 	Titulo VARCHAR(126) NOT NULL,
@@ -40,6 +59,25 @@ CREATE TABLE IF NOT EXISTS Sessoes (
 	   ON DELETE RESTRICT
 );
 
+INSERT INTO Produtos(Descricao, Preco, PrecoPontuacao) values
+('Refrigerante', 12.6,12),
+('Crack',26, 99),
+('Doce',56,20),
+('Salgado',23, 84),
+('Pipoca',5.6,140),
+('Mac',8.9,5),
+('Huan',4.4,12),
+('Café',0.5,23);
+
+INSERT INTO Clientes(Nome, CPF, DataNascimento, Pontuacao) values
+("Evandro",'10562708960', '1997-11-15',0),
+("Eric",'10562708960','1998-10-10', 99),
+("Leandro",'10562708960','1996-03-09',20),
+("Junior",'10562708960','1989-04-12', 84),
+("Luiza",'10562708960','1864-10-11',140),
+("Pedro",'10562708960','1956-01-02',5),
+("Maria",'10562708960','2001-06-11',12),
+("Vini",'10562708960','2000-12-03',23);
 
 INSERT INTO filmes(Titulo, Diretor, Genero, Idioma, Duracao) values
 ("Vingadores","Tarantino","Comedia","PTBR",110),

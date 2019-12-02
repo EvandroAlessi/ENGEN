@@ -15,5 +15,9 @@ public enum Tela {
     CARTAZ,
     SESSAO,
     FILME,
-    SALA
+    SALA,
+    CLIENTE,
+    PRODUTO,
+    VENDA_INGRESSO,
+    VENDA_PRODUTO
 }

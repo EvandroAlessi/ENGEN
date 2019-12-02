@@ -112,4 +112,11 @@ public class Sessao {
         
         return dataF;
     }
+
+    @Override
+    public String toString() {
+        return this.filme.getTitulo();
+    }
+    
+    
 }

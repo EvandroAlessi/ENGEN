@@ -27,7 +27,7 @@ public class MenuSuperiorFX extends MenuBar {
     // Declaração de componentes
     MenuBar menuSuperior;
     Menu arquivo, geral;
-    MenuItem sair, btnCartaz, btnSessao, btnFilme, btnSala;;
+    MenuItem sair, btnCartaz, btnSessao, btnFilme, btnSala, btnCliente, btnProduto;
 
     /** @param main Recebe MainFX
     */
@@ -35,14 +35,16 @@ public class MenuSuperiorFX extends MenuBar {
         //Instanciação de componentes
         arquivo = new Menu("Arquivo");
         geral = new Menu("Geral");
-         btnCartaz = new MenuItem("Em Cartaz");
+        btnCartaz = new MenuItem("Em Cartaz");
         btnSessao = new MenuItem("Sessões");
         btnFilme = new MenuItem("Filmes");
         btnSala = new MenuItem("Salas");
+        btnCliente = new MenuItem("Clientes");
+        btnProduto = new MenuItem("Produtos");
         sair = new MenuItem("Sair      ");
         arquivo.getItems().add(sair);
         
-        geral.getItems().addAll(btnCartaz, btnSessao, btnFilme, btnSala);
+        geral.getItems().addAll(btnCartaz, btnSessao, btnFilme, btnSala, btnCliente, btnProduto);
         
         getMenus().addAll(arquivo, geral);
 
@@ -60,6 +62,14 @@ public class MenuSuperiorFX extends MenuBar {
 
         btnSala.setOnAction((event) -> {
             main.switchCenter(Tela.SALA);
+        });
+        
+        btnCliente.setOnAction((event) -> {
+            main.switchCenter(Tela.SALA);
+        });
+        
+        btnProduto.setOnAction((event) -> {
+            main.switchCenter(Tela.PRODUTO);
         });
 
         // Evento para confirmação de saída
